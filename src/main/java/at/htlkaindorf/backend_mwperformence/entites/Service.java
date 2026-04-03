@@ -1,10 +1,9 @@
 package at.htlkaindorf.backend_mwperformence.entites;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 /**
  * Project: backend_MWPerformence
@@ -22,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Service {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 10)
@@ -36,4 +35,14 @@ public class Service {
 
     @Column(nullable = false)
     private Integer sort;
+
+    @OneToMany(mappedBy = "service", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private List<Appointment> appointments;
+
+    @ManyToMany(mappedBy = "services")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private List<Offer> offers;
 }

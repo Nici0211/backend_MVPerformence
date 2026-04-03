@@ -12,9 +12,4 @@ import java.util.List;
  * Time: 11:10
  */
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
-    // Sortiert nach Datum, damit die nächsten Termine oben stehen
-    List<Appointment> findAllByOrderByPreferredDateAsc();
-
-    // Hilfreich für dein Dashboard ("Status: Neu")
-    List<Appointment> findByStatusIgnoreCase(String status);
 }

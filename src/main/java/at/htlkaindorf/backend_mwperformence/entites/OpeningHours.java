@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 /**
  * Project: backend_MWPerformence
  * Created by: Dominik Ranegger
- * Date: 25.03.2026
- * Time: 12:37
+ * Date: 01.04.2026
+ * Time: 21:24
  */
 
 @Data
@@ -18,16 +18,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "contact_info")
-public class ContactInfo {
+@Table(name = "opening_hours")
+public class OpeningHours {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(nullable = false, length = 10)
-    private String icon;
+    @Column(name = "day_label", nullable = false, length = 50)
+    private String dayLabel;
+
+    @Column(name = "open_time", length = 5)
+    private String openTime;
+
+    @Column(name = "close_time", length = 5)
+    private String closeTime;
 
     @Column(nullable = false)
-    private String value;
+    @Builder.Default
+    private Boolean closed = false;
 }
+

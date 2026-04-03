@@ -20,5 +20,4 @@ public class ContactInfoDTO {
     private Long id;
     private String icon;
     private String value;
-    private Integer sort;
 }

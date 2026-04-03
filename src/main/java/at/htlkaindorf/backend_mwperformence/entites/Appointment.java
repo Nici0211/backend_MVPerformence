@@ -1,10 +1,7 @@
 package at.htlkaindorf.backend_mwperformence.entites;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -24,8 +21,7 @@ import java.time.LocalDateTime;
 public class Appointment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appointment_seq")
-    @SequenceGenerator(name = "appointment_seq", sequenceName = "appointment_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "customer_name", nullable = false)
@@ -40,6 +36,26 @@ public class Appointment {
     @Column(name = "preferred_date", nullable = false)
     private LocalDateTime preferredDate;
 
-    @Column(nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 30)
+    private AppointmentStatus status = AppointmentStatus.OPEN;
+
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "vehicle_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Vehicle vehicleEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "service_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Service service;
 }

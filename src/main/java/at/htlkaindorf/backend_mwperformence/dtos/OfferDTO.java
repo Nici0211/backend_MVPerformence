@@ -6,24 +6,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Project: backend_MWPerformence
  * Created by: Dominik Ranegger
- * Date: 27.03.2026
- * Time: 10:21
+ * Date: 02.04.2026
+ * Time: 23:05
  */
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ReviewDTO {
+public class OfferDTO {
     private Long id;
-    private String name;
-    private Short stars;
-    private String text;
+    private String title;
+    private String description;
+    private Double price;
+    private Boolean active;
     private LocalDateTime createdAt;
+    private List<ServiceDTO> services;
 }
-

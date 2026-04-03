@@ -1,10 +1,7 @@
 package at.htlkaindorf.backend_mwperformence.entites;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +11,6 @@ import java.time.LocalDateTime;
  * Date: 25.03.2026
  * Time: 12:37
  */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,7 +20,7 @@ import java.time.LocalDateTime;
 public class Review {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(nullable = false, length = 100)
@@ -36,6 +32,13 @@ public class Review {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String text;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private User user;
 }

@@ -23,4 +23,3 @@ public class ServiceDTO {
     private String subtitle;
     private Integer sort;
 }
-

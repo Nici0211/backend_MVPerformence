@@ -13,12 +13,5 @@ import java.util.List;
  * Time: 12:36
  */
 public interface ServiceRepository extends JpaRepository<Service, Long> {
-
-    // Sortiert nach sort-Spalte aufsteigend
-    List<Service> findAllByOrderBySortAsc();
-
-    // Suche nach Titel (wie findAllStudentsByLastname im Beispiel)
-    @Query("SELECT s FROM Service s WHERE s.title LIKE :title")
-    List<Service> findAllByTitle(String title);
 }
 

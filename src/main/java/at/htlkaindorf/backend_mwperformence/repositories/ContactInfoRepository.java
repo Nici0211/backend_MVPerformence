@@ -13,7 +13,4 @@ import java.util.List;
  * Time: 12:35
  */
 public interface ContactInfoRepository extends JpaRepository<ContactInfo, Long> {
-
-    @Query("SELECT c FROM ContactInfo c ORDER BY c.sort ASC")
-    List<ContactInfo> findAllByOrderBySortAsc();
 }

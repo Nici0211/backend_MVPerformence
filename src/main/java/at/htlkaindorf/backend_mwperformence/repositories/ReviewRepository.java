@@ -13,15 +13,4 @@ import java.util.List;
  * Time: 12:35
  */
 public interface ReviewRepository extends JpaRepository<Review, Long> {
-
-    // Neueste zuerst
-    List<Review> findAllByOrderByCreatedAtDesc();
-
-    // Nur Bewertungen mit bestimmter Sternanzahl
-    @Query("SELECT r FROM Review r WHERE r.stars = :stars ORDER BY r.createdAt DESC")
-    List<Review> findAllByStars(Short stars);
-
-    // Anzahl der Bewertungen mit mind. X Sternen
-    @Query("SELECT COUNT(r) FROM Review r WHERE r.stars >= :minStars")
-    Long countReviewsWithMinStars(Short minStars);
 }

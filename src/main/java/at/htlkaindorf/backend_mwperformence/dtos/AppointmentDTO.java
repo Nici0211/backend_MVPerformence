@@ -1,6 +1,12 @@
 package at.htlkaindorf.backend_mwperformence.dtos;
 
+import at.htlkaindorf.backend_mwperformence.entites.AppointmentStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 /**
  * Project: backend_MWPerformence
@@ -10,11 +16,14 @@ import lombok.Data;
  */
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class AppointmentDTO {
     private Long id;
     private String customerName;
     private String serviceType;
     private String vehicle;
-    private String preferredDate;
-    private String status;
+    private LocalDateTime preferredDate;
+    private AppointmentStatus status;
 }
