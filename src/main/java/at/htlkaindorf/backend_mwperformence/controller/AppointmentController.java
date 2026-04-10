@@ -25,10 +25,18 @@ public class AppointmentController {
 
     private final AppointmentService appointmentService;
 
+    /**
+     * Retrieves all appointments paginated, optionally filtered by status.
+     *
+     * @param status Filter status of the appointments (optional)
+     * @param page   Page number (default: 1)
+     * @param size   Number of appointments per page (default: 10)
+     */
+
     @GetMapping
     public ResponseEntity<Page<AppointmentDTO>> getAppointments(
             @RequestParam(required = false) AppointmentStatus status,
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size) {
 
         Pageable pageable = PageRequest.of(page, size);

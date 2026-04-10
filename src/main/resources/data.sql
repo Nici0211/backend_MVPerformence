@@ -54,13 +54,13 @@ INSERT INTO offer_services (offer_id, service_id) VALUES (2, 5);
 
 -- 6. APPOINTMENTS
 INSERT INTO appointments (id, user_id, vehicle_id, service_id, customer_name, service_type, vehicle, preferred_date, status)
-VALUES (1, 2, 1, 1, 'Thomas Kauer',  'Ölwechsel',     'VW Golf 2019',  '2026-03-19 10:00:00', 'OPEN');
+VALUES (1, 2, 1, 1, 'Thomas Kauer',  'Ölwechsel',     'VW Golf 2019',  '2026-03-19 10:00:00', 'NEU');
 
 INSERT INTO appointments (id, user_id, vehicle_id, service_id, customer_name, service_type, vehicle, preferred_date, status)
-VALUES (2, 3, 2, 2, 'Maria Schreiner', 'Reifenwechsel', 'BMW X3 2021',   '2026-03-20 09:00:00', 'CONFIRMED');
+VALUES (2, 3, 2, 2, 'Maria Schreiner', 'Reifenwechsel', 'BMW X3 2021',   '2026-03-20 09:00:00', 'BESTÄTIGT');
 
 INSERT INTO appointments (id, user_id, vehicle_id, service_id, customer_name, service_type, vehicle, preferred_date, status)
-VALUES (3, 4, 3, 3, 'Stefan Bauer',  'Bremsenservice','Audi A4 2017',  '2026-03-21 14:00:00', 'DONE');
+VALUES (3, 4, 3, 3, 'Stefan Bauer',  'Bremsenservice','Audi A4 2017',  '2026-03-21 14:00:00', 'ABGESCHLOSSEN');
 
 -- 7. REVIEWS
 INSERT INTO reviews (id, user_id, name, stars, text, created_at)

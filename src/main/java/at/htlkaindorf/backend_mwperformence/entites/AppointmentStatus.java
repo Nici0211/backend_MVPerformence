@@ -7,8 +7,9 @@ package at.htlkaindorf.backend_mwperformence.entites;
  * Time: 22:50
  */
 public enum AppointmentStatus {
-    OPEN,
-    CONFIRMED,
-    REJECTED,
-    DONE
+    NEU,
+    BESTÄTIGT,
+    AUSSTEHEND,
+    ABGELEHNT,
+    ABGESCHLOSSEN
 }

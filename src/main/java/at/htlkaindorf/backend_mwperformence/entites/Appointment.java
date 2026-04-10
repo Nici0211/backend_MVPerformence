@@ -38,7 +38,7 @@ public class Appointment {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 30)
-    private AppointmentStatus status = AppointmentStatus.OPEN;
+    private AppointmentStatus status = AppointmentStatus.NEU;
 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
