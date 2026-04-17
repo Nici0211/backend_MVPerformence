@@ -5,6 +5,9 @@ import at.htlkaindorf.backend_mwperformence.entites.Appointment;
 import at.htlkaindorf.backend_mwperformence.entites.AppointmentStatus;
 import at.htlkaindorf.backend_mwperformence.mapper.AppointmentMapper;
 import at.htlkaindorf.backend_mwperformence.repositories.AppointmentRepository;
+import at.htlkaindorf.backend_mwperformence.repositories.ServiceRepository;
+import at.htlkaindorf.backend_mwperformence.repositories.UserRepository;
+import at.htlkaindorf.backend_mwperformence.repositories.VehicleRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,6 +29,9 @@ public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
     private final AppointmentMapper appointmentMapper;
+    private final UserRepository userRepository;
+    private final VehicleRepository vehicleRepository;
+    private final ServiceRepository serviceRepository;
 
     public Page<AppointmentDTO> getAllAppointments(Pageable pageable) {
         return appointmentRepository.findAll(pageable)
@@ -46,17 +52,22 @@ public class AppointmentService {
 
     @Transactional
     public AppointmentDTO create(AppointmentDTO dto) {
-        // DTO in Entity umwandeln (Mapper erledigt Datums-Zusammenführung)
         Appointment appointment = appointmentMapper.toEntity(dto);
 
-        // Initialer Status
+        if (dto.getCustomerId() != null)
+            appointment.setUser(userRepository.findById(dto.getCustomerId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User nicht gefunden")));
+
+        if (dto.getVehicleId() != null)
+            appointment.setVehicleEntity(vehicleRepository.findById(dto.getVehicleId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Fahrzeug nicht gefunden")));
+
+        if (dto.getServiceId() != null)
+            appointment.setService(serviceRepository.findById(dto.getServiceId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Service nicht gefunden")));
+
         appointment.setStatus(AppointmentStatus.NEU);
-
-        // Speichern
-        Appointment saved = appointmentRepository.save(appointment);
-
-        // Zurück zum Frontend
-        return appointmentMapper.toDto(saved);
+        return appointmentMapper.toDto(appointmentRepository.save(appointment));
     }
 
     @Transactional

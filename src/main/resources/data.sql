@@ -20,7 +20,7 @@ VALUES (1, 2, 'VW', 'Golf', 2019, 'GU-12345'),
        (7, 2, 'Porsche', '911', 2023, 'G-FAST1'),
        (8, 3, 'Opel', 'Corsa', 2012, 'GU-88221');
 
--- 3. SERVICES (Ohne sort, mit price)
+-- 3. SERVICES
 INSERT INTO services (id, icon, title, subtitle, price)
 VALUES (1, 'oil-can', 'Ölwechsel', 'Motoröl + Filter wechseln', 80.0),
        (2, 'tire', 'Reifenwechsel', 'Sommer-/Winterreifen montieren', 45.0),
@@ -43,38 +43,23 @@ VALUES (1, 1),
        (1, 3),
        (2, 5);
 
--- 6. APPOINTMENTS (Werte korrigiert: STORNIERT wurde zu ABGESCHLOSSEN)
-INSERT INTO appointments (id, user_id, vehicle_id, service_id, customer_name, service_type, vehicle, preferred_date,
-                          status, price, created_at)
-VALUES (1, 2, 1, 1, 'Thomas Kauer', 'Ölwechsel', 'VW Golf 2019', '2026-03-19 10:00:00', 'NEU', 120.0,
-        CURRENT_TIMESTAMP),
-       (2, 3, 2, 2, 'Maria Schreiner', 'Reifenwechsel', 'BMW X3 2021', '2026-03-20 09:00:00', 'BESTÄTIGT', 45.0,
-        CURRENT_TIMESTAMP),
-       (3, 4, 3, 3, 'Stefan Bauer', 'Bremsenservice', 'Audi A4 2017', '2026-03-21 14:00:00', 'ABGESCHLOSSEN', 210.0,
-        CURRENT_TIMESTAMP),
-       (4, 2, 1, 4, 'Thomas Kauer', 'HU / §57a', 'VW Golf 2019', '2026-04-15 08:30:00', 'NEU', 89.0, CURRENT_TIMESTAMP),
-       (5, 3, 2, 5, 'Maria Schreiner', 'Klimaservice', 'BMW X3 2021', '2026-04-15 10:00:00', 'BESTÄTIGT', 69.0,
-        CURRENT_TIMESTAMP),
-       (6, 4, 3, 1, 'Stefan Bauer', 'Ölwechsel', 'Audi A4 2017', '2026-04-16 13:00:00', 'NEU', 135.0,
-        CURRENT_TIMESTAMP),
-       (7, 2, 4, 3, 'Thomas Kauer', 'Bremsenservice', 'Mercedes C-Klasse', '2026-04-17 09:15:00', 'BESTÄTIGT', 280.0,
-        CURRENT_TIMESTAMP),
-       (8, 3, 5, 2, 'Maria Schreiner', 'Reifenwechsel', 'Tesla Model 3', '2026-04-18 11:00:00', 'NEU', 55.0,
-        CURRENT_TIMESTAMP),
-       (9, 4, 6, 6, 'Stefan Bauer', 'Großes Service', 'Ford Focus', '2026-04-20 08:00:00', 'ABGESCHLOSSEN', 450.0,
-        CURRENT_TIMESTAMP),
-       (10, 2, 7, 1, 'Thomas Kauer', 'Ölwechsel', 'Porsche 911', '2026-04-21 15:30:00', 'ABGESCHLOSSEN', 350.0,
-        CURRENT_TIMESTAMP),
-       (11, 3, 8, 7, 'Maria Schreiner', 'Lichtcheck', 'Opel Corsa', '2026-04-22 10:00:00', 'NEU', 25.0,
-        CURRENT_TIMESTAMP),
-       (12, 4, 3, 4, 'Stefan Bauer', 'HU / §57a', 'Audi A4 2017', '2026-04-23 09:00:00', 'BESTÄTIGT', 89.0,
-        CURRENT_TIMESTAMP),
-       (13, 2, 1, 8, 'Thomas Kauer', 'Unterbodenschutz', 'VW Golf 2019', '2026-04-24 14:00:00', 'NEU', 180.0,
-        CURRENT_TIMESTAMP),
-       (14, 3, 2, 1, 'Maria Schreiner', 'Ölwechsel', 'BMW X3 2021', '2026-05-02 08:00:00', 'NEU', 140.0,
-        CURRENT_TIMESTAMP),
-       (15, 4, 6, 2, 'Stefan Bauer', 'Reifenwechsel', 'Ford Focus', '2026-05-03 10:30:00', 'NEU', 45.0,
-        CURRENT_TIMESTAMP);
+-- 6. APPOINTMENTS
+INSERT INTO appointments (id, user_id, vehicle_id, service_id, customer_name, preferred_date, status, price, note, created_at)
+VALUES (1, 2, 1, 1, 'Thomas Kauer', '2026-03-19 10:00:00', 'NEU', 120.0, NULL, CURRENT_TIMESTAMP),
+       (2, 3, 2, 2, 'Maria Schreiner', '2026-03-20 09:00:00', 'BESTÄTIGT', 45.0, NULL, CURRENT_TIMESTAMP),
+       (3, 4, 3, 3, 'Stefan Bauer', '2026-03-21 14:00:00', 'ABGESCHLOSSEN', 210.0, NULL, CURRENT_TIMESTAMP),
+       (4, 2, 1, 4, 'Thomas Kauer', '2026-04-15 08:30:00', 'NEU', 89.0, NULL, CURRENT_TIMESTAMP),
+       (5, 3, 2, 5, 'Maria Schreiner', '2026-04-15 10:00:00', 'BESTÄTIGT', 69.0, NULL, CURRENT_TIMESTAMP),
+       (6, 4, 3, 1, 'Stefan Bauer', '2026-04-16 13:00:00', 'NEU', 135.0, NULL, CURRENT_TIMESTAMP),
+       (7, 2, 4, 3, 'Thomas Kauer', '2026-04-17 09:15:00', 'BESTÄTIGT', 280.0, NULL, CURRENT_TIMESTAMP),
+       (8, 3, 5, 2, 'Maria Schreiner', '2026-04-18 11:00:00', 'NEU', 55.0, NULL, CURRENT_TIMESTAMP),
+       (9, 4, 6, 6, 'Stefan Bauer', '2026-04-20 08:00:00', 'ABGESCHLOSSEN', 450.0, NULL, CURRENT_TIMESTAMP),
+       (10, 2, 7, 1, 'Thomas Kauer', '2026-04-21 15:30:00', 'ABGESCHLOSSEN', 350.0, NULL, CURRENT_TIMESTAMP),
+       (11, 3, 8, 7, 'Maria Schreiner', '2026-04-22 10:00:00', 'NEU', 25.0, NULL, CURRENT_TIMESTAMP),
+       (12, 4, 3, 4, 'Stefan Bauer', '2026-04-23 09:00:00', 'BESTÄTIGT', 89.0, NULL, CURRENT_TIMESTAMP),
+       (13, 2, 1, 8, 'Thomas Kauer', '2026-04-24 14:00:00', 'NEU', 180.0, NULL, CURRENT_TIMESTAMP),
+       (14, 3, 2, 1, 'Maria Schreiner', '2026-05-02 08:00:00', 'NEU', 140.0, NULL, CURRENT_TIMESTAMP),
+       (15, 4, 6, 2, 'Stefan Bauer', '2026-05-03 10:30:00', 'NEU', 45.0, NULL, CURRENT_TIMESTAMP);
 
 -- 7. REVIEWS
 INSERT INTO reviews (id, user_id, name, stars, text, created_at)
@@ -93,3 +78,13 @@ INSERT INTO opening_hours (id, day_label, open_time, close_time, closed)
 VALUES (1, 'Mo – Fr', '08:00', '17:00', false),
        (2, 'Samstag', '09:00', '13:00', false),
        (3, 'Sonntag', NULL, NULL, true);
+
+-- Reset sequences
+SELECT setval('users_id_seq', (SELECT MAX(id) FROM users));
+SELECT setval('vehicles_id_seq', (SELECT MAX(id) FROM vehicles));
+SELECT setval('services_id_seq', (SELECT MAX(id) FROM services));
+SELECT setval('offers_id_seq', (SELECT MAX(id) FROM offers));
+SELECT setval('appointments_id_seq', (SELECT MAX(id) FROM appointments));
+SELECT setval('reviews_id_seq', (SELECT MAX(id) FROM reviews));
+SELECT setval('contact_info_id_seq', (SELECT MAX(id) FROM contact_info));
+SELECT setval('opening_hours_id_seq', (SELECT MAX(id) FROM opening_hours));

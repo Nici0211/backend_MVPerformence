@@ -34,4 +34,6 @@ public class AppointmentDTO {
     private Double price;
     private String note;
     private String createdAt;     // ISO-8601 String
+    private Long vehicleId;
+    private Long serviceId;
 }

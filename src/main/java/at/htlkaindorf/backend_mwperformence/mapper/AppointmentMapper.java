@@ -18,18 +18,25 @@ import java.util.List;
 public interface AppointmentMapper {
 
     @Mapping(target = "customerId", source = "user.id")
+    @Mapping(target = "vehicleId", source = "vehicleEntity.id")
+    @Mapping(target = "serviceId", source = "service.id")
     @Mapping(target = "brand", source = "vehicleEntity.brand")
     @Mapping(target = "model", source = "vehicleEntity.model")
     @Mapping(target = "year", source = "vehicleEntity.buildYear")
     @Mapping(target = "licensePlate", source = "vehicleEntity.licensePlate")
-    @Mapping(target = "price", source = "price")
     @Mapping(target = "date", expression = "java(appointment.getPreferredDate().toLocalDate().toString())")
     @Mapping(target = "time", expression = "java(appointment.getPreferredDate().toLocalTime().toString().substring(0,5))")
     @Mapping(target = "createdAt", expression = "java(appointment.getCreatedAt() != null ? appointment.getCreatedAt().toString() : null)")
     AppointmentDTO toDto(Appointment appointment);
 
-    @Mapping(target = "user.id", source = "customerId")
+    @Mapping(target = "user", ignore = true)
+    @Mapping(target = "vehicleEntity", ignore = true)
+    @Mapping(target = "service", ignore = true)
     @Mapping(target = "preferredDate", expression = "java(mapDateTime(dto.getDate(), dto.getTime()))")
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "serviceType", ignore = true)
+    @Mapping(target = "vehicle", ignore = true)
     Appointment toEntity(AppointmentDTO dto);
 
     List<AppointmentDTO> toDto(List<Appointment> appointments);

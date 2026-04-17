@@ -27,10 +27,9 @@ public class Appointment {
     @Column(name = "customer_name", nullable = false)
     private String customerName;
 
-    @Column(name = "service_type", nullable = false)
+    @Column(name = "service_type")
     private String serviceType;
 
-    @Column(nullable = false)
     private String vehicle; // Anzeige-String (z.B. "VW Golf")
 
     @Column(name = "preferred_date", nullable = false)
@@ -49,19 +48,19 @@ public class Appointment {
     @Column(columnDefinition = "TEXT") // Für längere Anmerkungen
     private String note;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle_id")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Vehicle vehicleEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "service_id")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
