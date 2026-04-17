@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * REST controller that exposes the authentication endpoints.
- * <p>
  * All routes are public (no JWT required) and live under {@code /api/auth}.
- * </p>
+ *
+ * @author Nici0211
  */
 @RestController
 @RequestMapping("/api/auth")
@@ -25,9 +25,7 @@ public class AuthController {
 
     /**
      * Authenticates an existing user with their e-mail and password.
-     * <p>
      * {@code POST /api/auth/login}
-     * </p>
      *
      * @param request the login credentials (e-mail + password), validated via {@code @Valid}
      * @return {@code 200 OK} with an {@link AuthResponse} containing the JWT and user data
@@ -41,9 +39,7 @@ public class AuthController {
      * Registers a new customer account.
      * Optionally, a vehicle can be registered together with the account if
      * {@code vehicleBrand} and {@code vehicleModel} are provided in the request body.
-     * <p>
      * {@code POST /api/auth/register}
-     * </p>
      *
      * @param request the registration data (personal info + optional vehicle data), validated via {@code @Valid}
      * @return {@code 201 Created} with an {@link AuthResponse} containing the JWT and user data

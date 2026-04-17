@@ -15,21 +15,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 /**
  * Central Spring Security configuration for the application.
- *
- * Defines the HTTP security rules:
- *
- *   CSRF protection is disabled because the API is stateless and uses JWT.</li>
- *   Session management is set to {@link SessionCreationPolicy#STATELESS}; no
- *       HTTP session is created or used.</li>
- *   Public endpoints (auth, services, offers, opening hours, contact info,
- *       reviews, Swagger UI, Actuator) are accessible without authentication.</li>
- *   The {@code /api/users/**} endpoints are restricted to users with the
- *       {@code ADMIN} role.</li>
- *   All other endpoints require a valid JWT.</li>
- *
+ * CSRF protection is disabled because the API is stateless and uses JWT.
+ * Session management is set to STATELESS so no HTTP session is created or used.
+ * Public endpoints (auth, services, offers, opening hours, contact info, reviews,
+ * Swagger UI, Actuator) are accessible without authentication.
+ * The /api/users/** endpoints are restricted to users with the ADMIN role.
+ * All other endpoints require a valid JWT.
  * The {@link JwtAuthenticationFilter} is inserted before the default
  * {@link UsernamePasswordAuthenticationFilter} so JWT tokens are evaluated first.
  *
+ * @author Nici0211
  */
 @Configuration
 @RequiredArgsConstructor
@@ -85,7 +80,7 @@ public class SecurityConfig {
 
     /**
      * Exposes the {@link AuthenticationManager} bean so it can be injected into
-     * services that need to programmatically authenticate users (e.g., {@code AuthService}).
+     * services that need to programmatically authenticate users.
      *
      * @param config the Spring-managed {@link AuthenticationConfiguration}
      * @return the application's {@link AuthenticationManager}

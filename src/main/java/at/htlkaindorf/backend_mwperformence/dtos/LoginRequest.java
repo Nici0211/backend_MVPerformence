@@ -6,10 +6,10 @@ import lombok.Data;
 
 /**
  * Request payload for the {@code POST /api/auth/login} endpoint.
- * <p>
  * Both fields are mandatory and are validated via Bean Validation before the
  * request reaches the service layer.
- * </p>
+ *
+ * @author Nici0211
  */
 @Data
 public class LoginRequest {

@@ -6,15 +6,12 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 /**
- * JPA entity representing a workshop appointment.
- * <p>
- * An appointment belongs to a {@link User} (customer), is optionally linked to one
- * of their {@link Vehicle}s, and references the requested {@link Service}.
- * The current processing state is tracked via {@link AppointmentStatus}.
- * </p>
- *
- * @author Dominik Ranegger
+ * Project: backend_MWPerformence
+ * Created by: Dominik Ranegger
+ * Date: 27.03.2026
+ * Time: 11:08
  */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

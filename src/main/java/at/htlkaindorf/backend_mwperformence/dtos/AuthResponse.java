@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 /**
  * Response payload returned by the authentication endpoints ({@code /api/auth/login}
  * and {@code /api/auth/register}).
- * <p>
  * Contains the signed JWT that the client must include as a {@code Bearer} token in
  * subsequent requests, together with a lightweight representation of the authenticated user.
- * </p>
+ *
+ * @author Nici0211
  */
 @Data
 @Builder

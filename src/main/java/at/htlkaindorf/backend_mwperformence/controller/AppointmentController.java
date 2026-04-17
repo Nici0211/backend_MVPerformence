@@ -12,14 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * REST controller that exposes appointment management endpoints.
- * <p>
- * Base path: {@code /api/appointments}. All requests require a valid JWT unless
- * the endpoint is explicitly marked as public in {@code SecurityConfig}.
- * </p>
- *
- * @author Dominik Ranegger
+ * Project: backend_MWPerformence
+ * Created by: Dominik Ranegger
+ * Date: 27.03.2026
+ * Time: 11:12
  */
+
 @RestController
 @RequestMapping("/api/appointments")
 @RequiredArgsConstructor
@@ -27,17 +25,6 @@ public class AppointmentController {
 
     private final AppointmentService appointmentService;
 
-    /**
-     * Returns a paginated list of all appointments, optionally filtered by their status.
-     * <p>
-     * {@code GET /api/appointments?status=NEU&page=0&size=10}
-     * </p>
-     *
-     * @param status optional {@link AppointmentStatus} filter; when omitted all appointments are returned
-     * @param page   zero-based page index (default: {@code 1})
-     * @param size   number of items per page (default: {@code 10})
-     * @return {@code 200 OK} with a {@link Page} of {@link AppointmentDTO} objects
-     */
     @GetMapping
     public ResponseEntity<Page<AppointmentDTO>> getAppointments(
             @RequestParam(required = false) AppointmentStatus status,

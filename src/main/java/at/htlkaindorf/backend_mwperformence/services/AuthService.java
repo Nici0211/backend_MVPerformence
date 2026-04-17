@@ -21,10 +21,10 @@ import java.util.ArrayList;
 
 /**
  * Service responsible for user authentication and registration.
- * <p>
  * Handles credential verification during login and account creation during registration.
  * On success, both operations return a signed JWT together with basic user information.
- * </p>
+ *
+ * @author Nici0211
  */
 @Service
 @RequiredArgsConstructor

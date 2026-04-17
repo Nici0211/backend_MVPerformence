@@ -19,13 +19,13 @@ INSERT INTO users (id, first_name, last_name, email, password_hash, phone, stree
 VALUES (1, 'Max', 'Mustermann', 'admin@mwperformance.at', '$2y$10$..iVgU.UYVDvYuW8NLokEONtpdp/Rtck/qAnzFGq.bksPgOId9zwq', '+43 664 1234567', 'Werkstattstraße 1', 'Graz', 'ADMIN', CURRENT_TIMESTAMP);
 
 INSERT INTO users (id, first_name, last_name, email, password_hash, phone, street, city, role, created_at)
-VALUES (2, 'Thomas', 'Kauer', 'thomas.kauer@gmail.com', '$2a$10$examplehash1', '+43 699 1111111', 'Hauptstraße 5', 'Graz', 'CUSTOMER', CURRENT_TIMESTAMP);
+VALUES (2, 'Thomas', 'Kauer', 'thomas.kauer@gmail.com', '$2y$10$Vp.8qEcQlOBNYBHXAZi0xeS6V5Fr9giPo249L51nDVN8wqG8nERQG', '+43 699 1111111', 'Hauptstraße 5', 'Graz', 'CUSTOMER', CURRENT_TIMESTAMP);
 
 INSERT INTO users (id, first_name, last_name, email, password_hash, phone, street, city, role, created_at)
-VALUES (3, 'Maria', 'Schreiner', 'maria.schreiner@gmail.com', '$2a$10$examplehash2', '+43 699 2222222', 'Schillerstraße 12', 'Graz', 'CUSTOMER', CURRENT_TIMESTAMP);
+VALUES (3, 'Maria', 'Schreiner', 'maria.schreiner@gmail.com', '$2y$10$1X8sYSsI1tEB6tidBUqsfeSqlVdvABnBMjIfPRB7pTzUz154.O.EG', '+43 699 2222222', 'Schillerstraße 12', 'Graz', 'CUSTOMER', CURRENT_TIMESTAMP);
 
 INSERT INTO users (id, first_name, last_name, email, password_hash, phone, street, city, role, created_at)
-VALUES (4, 'Stefan', 'Bauer', 'stefan.bauer@gmail.com', '$2a$10$examplehash3', '+43 699 3333333', 'Mozartgasse 3', 'Leibnitz', 'CUSTOMER', CURRENT_TIMESTAMP);
+VALUES (4, 'Stefan', 'Bauer', 'stefan.bauer@gmail.com', '$2y$10$G7dfXYviNn6Ll/NvLX1XZeTH1TbS9waUZEgijrNERwHzmEDFUGAMy', '+43 699 3333333', 'Mozartgasse 3', 'Leibnitz', 'CUSTOMER', CURRENT_TIMESTAMP);
 
 -- 2. VEHICLES
 INSERT INTO vehicles (id, user_id, brand, model, build_year, license_plate)

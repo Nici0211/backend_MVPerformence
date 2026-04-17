@@ -10,14 +10,12 @@ import java.util.Map;
 /**
  * Global exception handler that converts application exceptions into structured
  * JSON error responses.
- * <p>
  * Every response body contains three fields:
- * <ul>
- *   <li>{@code timestamp} – ISO-8601 date-time of the error</li>
- *   <li>{@code status} – HTTP status code as an integer</li>
- *   <li>{@code error} – human-readable error message</li>
- * </ul>
- * </p>
+ * - timestamp: ISO-8601 date-time of the error
+ * - status: HTTP status code as an integer
+ * - error: human-readable error message
+ *
+ * @author Nici0211
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -64,7 +62,7 @@ public class GlobalExceptionHandler {
     /**
      * Handles {@link org.springframework.security.access.AccessDeniedException} thrown
      * when an authenticated user tries to access a resource they are not authorised for
-     * (e.g. a {@code CUSTOMER} accessing an {@code ADMIN}-only endpoint).
+     * (e.g. a CUSTOMER accessing an ADMIN-only endpoint).
      *
      * @param ex the access-denied exception
      * @return {@code 403 Forbidden} with a generic access-denied message

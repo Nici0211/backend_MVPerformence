@@ -10,12 +10,12 @@ import java.util.List;
 
 /**
  * Global CORS configuration for the application.
- * <p>
  * Allows cross-origin requests from any origin with credentials,
  * supporting all standard HTTP methods and headers. This is required
  * so that the frontend (running on a different port or domain) can
  * communicate with the REST API.
- * </p>
+ *
+ * @author Nici0211
  */
 @Configuration
 public class CorsConfig {

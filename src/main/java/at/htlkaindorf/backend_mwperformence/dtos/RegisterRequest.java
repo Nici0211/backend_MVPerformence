@@ -7,12 +7,12 @@ import lombok.Data;
 
 /**
  * Request payload for the {@code POST /api/auth/register} endpoint.
- * <p>
  * Mandatory personal data (first name, last name, e-mail, password) must pass
  * Bean Validation before the request is processed. Vehicle fields are optional;
  * a vehicle is only persisted when both {@code vehicleBrand} and
  * {@code vehicleModel} are provided and non-blank.
- * </p>
+ *
+ * @author Nici0211
  */
 @Data
 public class RegisterRequest {
