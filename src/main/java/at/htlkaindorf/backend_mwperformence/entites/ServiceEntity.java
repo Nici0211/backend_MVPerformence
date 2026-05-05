@@ -18,7 +18,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "services")
-public class Service {
+public class ServiceEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,12 +36,12 @@ public class Service {
     @Column(nullable = false)
     private Integer sort;
 
-    @OneToMany(mappedBy = "service", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    @OneToMany(mappedBy = "serviceEntity", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Appointment> appointments;
 
-    @ManyToMany(mappedBy = "services")
+    @ManyToMany(mappedBy = "serviceEntities")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Offer> offers;

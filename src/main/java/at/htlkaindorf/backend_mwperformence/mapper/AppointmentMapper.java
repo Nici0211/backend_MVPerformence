@@ -19,7 +19,7 @@ public interface AppointmentMapper {
 
     @Mapping(target = "customerId", source = "user.id")
     @Mapping(target = "vehicleId", source = "vehicleEntity.id")
-    @Mapping(target = "serviceId", source = "service.id")
+    @Mapping(target = "serviceId", source = "serviceEntity.id")
     @Mapping(target = "brand", source = "vehicleEntity.brand")
     @Mapping(target = "model", source = "vehicleEntity.model")
     @Mapping(target = "year", source = "vehicleEntity.buildYear")
@@ -31,7 +31,7 @@ public interface AppointmentMapper {
 
     @Mapping(target = "user", ignore = true)
     @Mapping(target = "vehicleEntity", ignore = true)
-    @Mapping(target = "service", ignore = true)
+    @Mapping(target = "serviceEntity", ignore = true)
     @Mapping(target = "preferredDate", expression = "java(mapDateTime(dto.getDate(), dto.getTime()))")
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "createdAt", ignore = true)

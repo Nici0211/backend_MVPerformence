@@ -50,5 +50,5 @@ public class Offer {
     )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private List<Service> services;
+    private List<ServiceEntity> serviceEntities;
 }

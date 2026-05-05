@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ServiceDTO {
+public class ServiceEntityDTO {
     private Long id;
     private String icon;
     private String title;

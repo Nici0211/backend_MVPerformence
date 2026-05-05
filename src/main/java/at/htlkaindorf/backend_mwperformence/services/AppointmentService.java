@@ -75,7 +75,7 @@ public class AppointmentService {
         if (dto.getServiceId() != null) {
             var s = serviceRepository.findById(dto.getServiceId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Service nicht gefunden"));
-            appointment.setService(s);
+            appointment.setServiceEntity(s);
             appointment.setServiceType(s.getTitle());
         }
 
