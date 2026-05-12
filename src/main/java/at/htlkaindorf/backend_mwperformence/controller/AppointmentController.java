@@ -36,12 +36,16 @@ public class AppointmentController {
     @GetMapping
     public ResponseEntity<Page<AppointmentDTO>> getAppointments(
             @RequestParam(required = false) AppointmentStatus status,
+            @RequestParam(required = false) boolean todayOnly,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size) {
 
         Pageable pageable = PageRequest.of(page, size,
                 Sort.by("preferredDate").ascending());
 
+        if (todayOnly) {
+            return ResponseEntity.ok(appointmentService.getTodayAppointments(pageable));
+        }
         if (status != null) {
             return ResponseEntity.ok(appointmentService.getByStatus(status, pageable));
         }

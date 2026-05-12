@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -45,6 +46,21 @@ public class AppointmentService {
     public Page<AppointmentDTO> getActiveAppointments(Pageable pageable) {
         return appointmentRepository.findByStatusNotIn(
                         List.of(AppointmentStatus.ABGESCHLOSSEN, AppointmentStatus.ABGELEHNT), pageable)
+                .map(appointmentMapper::toDto);
+    }
+
+    /**
+     * Returns all appointments scheduled for today.
+     *
+     * @param pageable pagination and sorting information
+     * @return page of today's appointments
+     */
+    public Page<AppointmentDTO> getTodayAppointments(Pageable pageable) {
+        LocalDate today = LocalDate.now();
+        return appointmentRepository.findByPreferredDateBetween(
+                        today.atStartOfDay(),
+                        today.atTime(23, 59, 59),
+                        pageable)
                 .map(appointmentMapper::toDto);
     }
 
