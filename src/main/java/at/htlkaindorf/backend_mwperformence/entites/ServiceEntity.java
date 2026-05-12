@@ -33,8 +33,6 @@ public class ServiceEntity {
     @Column(length = 100)
     private String subtitle;
 
-    @Column(nullable = false)
-    private Integer sort;
 
     @OneToMany(mappedBy = "serviceEntity", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
     @ToString.Exclude

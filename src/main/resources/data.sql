@@ -38,20 +38,20 @@ INSERT INTO vehicles (user_id, brand, model, build_year, license_plate)
 VALUES (4, 'Audi', 'A4', 2017, 'LB-11111');
 
 -- 3. SERVICES
-INSERT INTO services (icon, title, subtitle, sort)
-VALUES ('oil-can',   'Ölwechsel',       'Motoröl + Filter wechseln',          1);
+INSERT INTO services (icon, title, subtitle)
+VALUES ('oil-can',   'Ölwechsel',       'Motoröl + Filter wechseln');
 
-INSERT INTO services (icon, title, subtitle, sort)
-VALUES ('tire',      'Reifenwechsel',    'Sommer- / Winterreifen montieren',   2);
+INSERT INTO services (icon, title, subtitle)
+VALUES ('tire',      'Reifenwechsel',    'Sommer- / Winterreifen montieren');
 
-INSERT INTO services (icon, title, subtitle, sort)
-VALUES ('brake',     'Bremsenservice',   'Bremsbeläge + Scheiben prüfen',      3);
+INSERT INTO services (icon, title, subtitle)
+VALUES ('brake',     'Bremsenservice',   'Bremsbeläge + Scheiben prüfen');
 
-INSERT INTO services (icon, title, subtitle, sort)
-VALUES ('car',       'HU / §57a',        'Hauptuntersuchung durchführen',      4);
+INSERT INTO services (icon, title, subtitle)
+VALUES ('car',       'HU / §57a',        'Hauptuntersuchung durchführen');
 
-INSERT INTO services (icon, title, subtitle, sort)
-VALUES ('snowflake', 'Klimaservice',     'Kältemittel + Desinfektion + Check', 5);
+INSERT INTO services (icon, title, subtitle)
+VALUES ('snowflake', 'Klimaservice',     'Kältemittel + Desinfektion + Check');
 
 -- 4. OFFERS
 INSERT INTO offers (title, description, price, active, created_at)

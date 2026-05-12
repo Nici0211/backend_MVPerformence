@@ -21,5 +21,4 @@ public class ServiceEntityDTO {
     private String icon;
     private String title;
     private String subtitle;
-    private Integer sort;
 }
