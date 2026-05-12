@@ -16,6 +16,10 @@ import java.util.List;
  * Time: 11:10
  */
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
+
     @Query("SELECT a FROM Appointment a WHERE a.status = :status")
     Page<Appointment> findByStatus(AppointmentStatus status, Pageable pageable);
+
+    @Query("SELECT a FROM Appointment a WHERE a.status <> :status")
+    Page<Appointment> findByStatusNot(AppointmentStatus status, Pageable pageable);
 }

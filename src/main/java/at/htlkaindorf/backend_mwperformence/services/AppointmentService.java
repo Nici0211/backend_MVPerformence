@@ -35,7 +35,7 @@ public class AppointmentService {
     private final ServiceRepository serviceRepository;
 
     public Page<AppointmentDTO> getAllAppointments(Pageable pageable) {
-        return appointmentRepository.findAll(pageable)
+        return appointmentRepository.findByStatusNot(AppointmentStatus.ABGESCHLOSSEN, pageable)
                 .map(appointmentMapper::toDto);
     }
 
