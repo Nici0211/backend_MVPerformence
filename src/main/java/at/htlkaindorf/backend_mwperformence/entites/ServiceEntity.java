@@ -2,6 +2,7 @@ package at.htlkaindorf.backend_mwperformence.entites;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.grammars.hql.HqlParser;
 
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class ServiceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 10)
-    private String icon;
+    @Column(nullable = false)
+    private byte[] icon;
 
     @Column(nullable = false, length = 100)
     private String title;

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -21,38 +22,49 @@ public class ServiceEntityService {
     private final ServiceMapper serviceMapper;
 
     public List<ServiceEntityDTO> getAllServices() {
-        return serviceMapper.toDto(serviceRepository.findAll());
+        return serviceRepository.findAll()
+                .stream()
+                .map(this::encodeIcon)
+                .toList();
     }
 
     public ServiceEntityDTO getServiceById(Long id) {
         ServiceEntity service = serviceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Service not found: " + id));
-        return serviceMapper.toDto(service);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Service nicht gefunden: " + id));
+        return encodeIcon(service);
     }
 
     public ServiceEntityDTO createService(ServiceEntityDTO dto) {
-        ServiceEntity saved = serviceRepository.save(serviceMapper.toEntity(dto));
-        return serviceMapper.toDto(saved);
+        ServiceEntity entity = serviceMapper.toEntity(dto);
+        if (dto.getIcon() != null)
+            entity.setIcon(Base64.getDecoder().decode(dto.getIcon()));
+        return encodeIcon(serviceRepository.save(entity));
     }
 
     public ServiceEntityDTO updateService(Long id, ServiceEntityDTO dto) {
         serviceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Service not found: " + id));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Service nicht gefunden: " + id));
         ServiceEntity entity = serviceMapper.toEntity(dto);
         entity.setId(id);
-        return serviceMapper.toDto(serviceRepository.save(entity));
+        if (dto.getIcon() != null)
+            entity.setIcon(Base64.getDecoder().decode(dto.getIcon()));
+        return encodeIcon(serviceRepository.save(entity));
     }
 
     @Transactional
     public void deleteService(Long id) {
         ServiceEntity service = serviceRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Service nicht gefunden"));
-
-        for (Offer offer : service.getOffers()) {
+        for (Offer offer : service.getOffers())
             offer.getServiceEntities().remove(service);
-        }
         service.getOffers().clear();
-
         serviceRepository.delete(service);
+    }
+
+    private ServiceEntityDTO encodeIcon(ServiceEntity entity) {
+        ServiceEntityDTO dto = serviceMapper.toDto(entity);
+        if (entity.getIcon() != null)
+            dto.setIcon(Base64.getEncoder().encodeToString(entity.getIcon()));
+        return dto;
     }
 }

@@ -25,8 +25,5 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     Page<Appointment> findByStatusNotIn(List<AppointmentStatus> statuses, Pageable pageable);
 
     @Query("SELECT a FROM Appointment a WHERE a.preferredDate BETWEEN :start AND :end")
-    Page<Appointment> findByPreferredDateBetween(
-            LocalDateTime start,
-            LocalDateTime end,
-            Pageable pageable);
+    Page<Appointment> findByPreferredDateBetween(LocalDateTime start, LocalDateTime end, Pageable pageable);
 }
