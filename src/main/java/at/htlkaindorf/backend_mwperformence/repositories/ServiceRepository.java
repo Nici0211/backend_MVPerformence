@@ -1,10 +1,7 @@
 package at.htlkaindorf.backend_mwperformence.repositories;
 
-import at.htlkaindorf.backend_mwperformence.entites.Service;
+import at.htlkaindorf.backend_mwperformence.entites.ServiceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
-import java.util.List;
 
 /**
  * Project: backend_MWPerformence
@@ -12,6 +9,6 @@ import java.util.List;
  * Date: 25.03.2026
  * Time: 12:36
  */
-public interface ServiceRepository extends JpaRepository<Service, Long> {
+public interface ServiceRepository extends JpaRepository<ServiceEntity, Long> {
 }
 

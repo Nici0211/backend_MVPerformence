@@ -17,6 +17,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.util.List;
+
 /**
  * Project: backend_MWPerformence
  * Created by: Dominik Ranegger
@@ -34,8 +37,30 @@ public class AppointmentService {
     private final VehicleRepository vehicleRepository;
     private final ServiceRepository serviceRepository;
 
-    public Page<AppointmentDTO> getAllAppointments(Pageable pageable) {
-        return appointmentRepository.findAll(pageable)
+    /**
+     * Returns all appointments that are not yet completed or rejected
+     *
+     * @param pageable pagination and sorting information
+     * @return page of active appointments
+     */
+    public Page<AppointmentDTO> getActiveAppointments(Pageable pageable) {
+        return appointmentRepository.findByStatusNotIn(
+                        List.of(AppointmentStatus.ABGESCHLOSSEN, AppointmentStatus.ABGELEHNT), pageable)
+                .map(appointmentMapper::toDto);
+    }
+
+    /**
+     * Returns all appointments scheduled for today.
+     *
+     * @param pageable pagination and sorting information
+     * @return page of today's appointments
+     */
+    public Page<AppointmentDTO> getTodayAppointments(Pageable pageable) {
+        LocalDate today = LocalDate.now();
+        return appointmentRepository.findByPreferredDateBetween(
+                        today.atStartOfDay(),
+                        today.atTime(23, 59, 59),
+                        pageable)
                 .map(appointmentMapper::toDto);
     }
 
@@ -75,7 +100,7 @@ public class AppointmentService {
         if (dto.getServiceId() != null) {
             var s = serviceRepository.findById(dto.getServiceId())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Service nicht gefunden"));
-            appointment.setService(s);
+            appointment.setServiceEntity(s);
             appointment.setServiceType(s.getTitle());
         }
 

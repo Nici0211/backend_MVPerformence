@@ -64,7 +64,7 @@ public class Appointment {
     @JoinColumn(name = "service_id")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private Service service;
+    private ServiceEntity serviceEntity;
 
     @PrePersist
     protected void onCreate() {

@@ -1,8 +1,9 @@
 package at.htlkaindorf.backend_mwperformence.mapper;
 
-import at.htlkaindorf.backend_mwperformence.dtos.ServiceDTO;
-import at.htlkaindorf.backend_mwperformence.entites.Service;
+import at.htlkaindorf.backend_mwperformence.dtos.ServiceEntityDTO;
+import at.htlkaindorf.backend_mwperformence.entites.ServiceEntity;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -15,11 +16,14 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ServiceMapper {
 
-    Service toEntity(ServiceDTO serviceDTO);
+    @Mapping(target = "appointments", ignore = true)
+    @Mapping(target = "offers", ignore = true)
+    @Mapping(target = "icon", ignore = true)
+    ServiceEntity toEntity(ServiceEntityDTO serviceDTO);
 
-    List<Service> toEntity(List<ServiceDTO> serviceDTO);
+    @Mapping(target = "icon", ignore = true)
+    ServiceEntityDTO toDto(ServiceEntity service);
 
-    ServiceDTO toDto(Service service);
-
-    List<ServiceDTO> toDto(List<Service> service);
+    List<ServiceEntityDTO> toDto(List<ServiceEntity> service);
+    List<ServiceEntity> toEntity(List<ServiceEntityDTO> serviceDTO);
 }

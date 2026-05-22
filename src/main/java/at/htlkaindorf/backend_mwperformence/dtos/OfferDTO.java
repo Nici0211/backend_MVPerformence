@@ -26,5 +26,5 @@ public class OfferDTO {
     private Double price;
     private Boolean active;
     private LocalDateTime createdAt;
-    private List<ServiceDTO> services;
+    private List<ServiceEntityDTO> services;
 }

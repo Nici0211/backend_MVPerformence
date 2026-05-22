@@ -16,10 +16,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ServiceDTO {
+public class ServiceEntityDTO {
     private Long id;
-    private String icon;
+    private String icon;   // Base64-encoded String
     private String title;
     private String subtitle;
-    private Integer sort;
 }

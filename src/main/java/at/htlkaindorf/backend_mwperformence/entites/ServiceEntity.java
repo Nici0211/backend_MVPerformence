@@ -2,6 +2,7 @@ package at.htlkaindorf.backend_mwperformence.entites;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.grammars.hql.HqlParser;
 
 import java.util.List;
 
@@ -18,14 +19,14 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "services")
-public class Service {
+public class ServiceEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 10)
-    private String icon;
+    @Column(nullable = false)
+    private byte[] icon;
 
     @Column(nullable = false, length = 100)
     private String title;
@@ -33,15 +34,13 @@ public class Service {
     @Column(length = 100)
     private String subtitle;
 
-    @Column(nullable = false)
-    private Integer sort;
 
-    @OneToMany(mappedBy = "service", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    @OneToMany(mappedBy = "serviceEntity", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Appointment> appointments;
 
-    @ManyToMany(mappedBy = "services")
+    @ManyToMany(mappedBy = "serviceEntities")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Offer> offers;
