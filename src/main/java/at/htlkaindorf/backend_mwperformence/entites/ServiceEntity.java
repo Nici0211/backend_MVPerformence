@@ -25,7 +25,8 @@ public class ServiceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column()
+    @Column(name = "icon")
+    @Basic(fetch = FetchType.EAGER)
     private byte[] icon;
 
     @Column(nullable = false, length = 100)

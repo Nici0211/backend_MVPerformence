@@ -30,14 +30,14 @@ public class AppointmentController {
 
     /**
      * @param status optional filter by appointment status
-     * @param page   page number (1-based)
+     * @param page   page number (0-based)
      * @param size   number of entries per page
      */
     @GetMapping
     public ResponseEntity<Page<AppointmentDTO>> getAppointments(
             @RequestParam(required = false) AppointmentStatus status,
             @RequestParam(required = false) boolean todayOnly,
-            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size) {
 
         Pageable pageable = PageRequest.of(page, size,
@@ -51,7 +51,6 @@ public class AppointmentController {
         }
         return ResponseEntity.ok(appointmentService.getActiveAppointments(pageable));
     }
-
     /**
      * @param id the ID of the appointment
      */

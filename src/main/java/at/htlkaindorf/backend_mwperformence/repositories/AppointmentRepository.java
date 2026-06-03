@@ -30,4 +30,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     @Query("SELECT a FROM Appointment a WHERE CAST(a.preferredDate AS date) = :date")
     List<Appointment> getAllAppointments(LocalDate date);
+
+    List<Appointment> findByStatusAndCreatedAtBefore(AppointmentStatus status, LocalDateTime date);
 }
