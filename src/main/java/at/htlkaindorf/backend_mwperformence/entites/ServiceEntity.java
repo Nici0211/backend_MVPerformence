@@ -25,7 +25,8 @@ public class ServiceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "icon")
+    @Basic(fetch = FetchType.EAGER)
     private byte[] icon;
 
     @Column(nullable = false, length = 100)
@@ -33,6 +34,9 @@ public class ServiceEntity {
 
     @Column(length = 100)
     private String subtitle;
+
+    @Column
+    private Double price;
 
     @OneToMany(mappedBy = "serviceEntity", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
     @ToString.Exclude
