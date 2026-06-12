@@ -7,8 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @description REST controller for user profile management.
+ * REST controller for user profile management.
  * All routes require a valid JWT (enforced globally by Spring Security).
+ * @author N
  */
 @RestController
 @RequestMapping("/api/users")
@@ -18,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     /**
-     * @description GET /api/users/{id} — returns the user's profile data.
+     * GET /api/users/{id} — returns the user's profile data.
      */
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getById(@PathVariable Long id) {
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     /**
-     * @description PUT /api/users/{id} — updates mutable profile fields (partial update supported).
+     *  PUT /api/users/{id} — updates mutable profile fields (partial update supported).
      */
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO dto) {
@@ -34,7 +35,7 @@ public class UserController {
     }
 
     /**
-     * @description DELETE /api/users/{id} — permanently deletes the account and all linked data.
+     *  DELETE /api/users/{id} — permanently deletes the account and all linked data.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {

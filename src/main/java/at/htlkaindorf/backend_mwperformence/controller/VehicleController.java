@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * @description REST controller for vehicle management.
+ *  REST controller for vehicle management.
  * All routes require a valid JWT (enforced globally by Spring Security).
+ * @author N
  */
 @RestController
 @RequestMapping("/api/vehicles")
@@ -21,7 +22,7 @@ public class VehicleController {
     private final VehicleService vehicleService;
 
     /**
-     * @description GET /api/vehicles/user/{userId} — returns all vehicles of a user.
+     *  GET /api/vehicles/user/{userId} — returns all vehicles of a user.
      */
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<VehicleDTO>> getByUser(@PathVariable Long userId) {
@@ -29,7 +30,7 @@ public class VehicleController {
     }
 
     /**
-     * @description POST /api/vehicles/user/{userId} — creates a new vehicle for a user.
+     *  POST /api/vehicles/user/{userId} — creates a new vehicle for a user.
      */
     @PostMapping("/user/{userId}")
     public ResponseEntity<VehicleDTO> create(@PathVariable Long userId, @RequestBody VehicleDTO dto) {
@@ -37,7 +38,7 @@ public class VehicleController {
     }
 
     /**
-     * @description PUT /api/vehicles/{id} — updates brand, model, buildYear and licensePlate.
+     *  PUT /api/vehicles/{id} — updates brand, model, buildYear and licensePlate.
      */
     @PutMapping("/{id}")
     public ResponseEntity<VehicleDTO> update(@PathVariable Long id, @RequestBody VehicleDTO dto) {
@@ -45,7 +46,7 @@ public class VehicleController {
     }
 
     /**
-     * @description DELETE /api/vehicles/{id} — removes a vehicle.
+     *  DELETE /api/vehicles/{id} — removes a vehicle.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
