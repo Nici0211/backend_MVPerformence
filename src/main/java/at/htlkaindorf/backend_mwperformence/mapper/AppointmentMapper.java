@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Project: backend_MWPerformence
- * Created by: Dominik Ranegger
+ * Created by: Dominik Ranegger (KI)
  * Date: 07.04.2026
  * Time: 10:21
  */

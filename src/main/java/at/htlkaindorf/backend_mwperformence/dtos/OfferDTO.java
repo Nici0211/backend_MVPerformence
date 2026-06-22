@@ -24,6 +24,7 @@ public class OfferDTO {
     private String title;
     private String description;
     private Double price;
+    private Integer duration;
     private Boolean active;
     private LocalDateTime createdAt;
     private List<ServiceEntityDTO> services;

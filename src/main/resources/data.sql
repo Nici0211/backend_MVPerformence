@@ -38,19 +38,19 @@ VALUES (3, 'BMW', 'X3', 2021, 'GU-67890');
 INSERT INTO vehicles (user_id, brand, model, build_year, license_plate)
 VALUES (4, 'Audi', 'A4', 2017, 'LB-11111');
 
--- 3. SERVICES (icon wird separat per API hochgeladen)
-INSERT INTO services (title, subtitle, price) VALUES ('Ölwechsel',       'Motoröl + Filter wechseln',          49.99);
-INSERT INTO services (title, subtitle, price) VALUES ('Reifenwechsel',   'Sommer- / Winterreifen montieren',   39.99);
-INSERT INTO services (title, subtitle, price) VALUES ('Bremsenservice',  'Bremsbeläge + Scheiben prüfen',      89.99);
-INSERT INTO services (title, subtitle, price) VALUES ('HU / §57a',       'Hauptuntersuchung durchführen',     120.00);
-INSERT INTO services (title, subtitle, price) VALUES ('Klimaservice',    'Kältemittel + Desinfektion + Check', 69.99);
+-- 3. SERVICES (duration in Minuten)
+INSERT INTO services (title, subtitle, price, duration) VALUES ('Ölwechsel',       'Motoröl + Filter wechseln',           49.99,  30);
+INSERT INTO services (title, subtitle, price, duration) VALUES ('Reifenwechsel',   'Sommer- / Winterreifen montieren',    39.99,  45);
+INSERT INTO services (title, subtitle, price, duration) VALUES ('Bremsenservice',  'Bremsbeläge + Scheiben prüfen',       89.99,  90);
+INSERT INTO services (title, subtitle, price, duration) VALUES ('HU / §57a',       'Hauptuntersuchung durchführen',      120.00, 60);
+INSERT INTO services (title, subtitle, price, duration) VALUES ('Klimaservice',    'Kältemittel + Desinfektion + Check',  69.99,  60);
 
--- 4. OFFERS
-INSERT INTO offers (title, description, price, active, created_at)
-VALUES ('Frühjahrs-Check', 'Ölwechsel + Bremsen + Reifencheck', 49.0, true, CURRENT_TIMESTAMP);
+-- 4. OFFERS (duration in Minuten — Summe der enthaltenen Services)
+INSERT INTO offers (title, description, price, duration, active, created_at)
+VALUES ('Frühjahrs-Check', 'Ölwechsel + Bremsen + Reifencheck', 49.0, 120, true, CURRENT_TIMESTAMP);
 
-INSERT INTO offers (title, description, price, active, created_at)
-VALUES ('Klimaservice', 'Kältemittel + Desinfektion + Check', 69.0, true, CURRENT_TIMESTAMP);
+INSERT INTO offers (title, description, price, duration, active, created_at)
+VALUES ('Klimaservice', 'Kältemittel + Desinfektion + Check', 69.0, 60, true, CURRENT_TIMESTAMP);
 
 -- 5. OFFER_SERVICES
 INSERT INTO offer_services (offer_id, service_id) VALUES (1, 1);
@@ -148,6 +148,7 @@ VALUES (3, 2, 2, 'Maria Schreiner', 'Reifenwechsel',  'BMW X3 2021',   CURRENT_T
 
 INSERT INTO appointments (user_id, vehicle_id, service_id, customer_name, service_type, vehicle, preferred_date, status, price, created_at)
 VALUES (4, 3, 1, 'Stefan Bauer',    'Ölwechsel',      'Audi A4 2017',  CURRENT_TIMESTAMP + INTERVAL '30 days', 'NEU',           149.99, CURRENT_TIMESTAMP - INTERVAL '8 days');
+
 -- 7. REVIEWS
 INSERT INTO reviews (user_id, name, stars, text, created_at)
 VALUES (2, 'Thomas Kauer',    5, 'Super Service, mein VW Golf läuft wieder perfekt!', CURRENT_TIMESTAMP);
@@ -157,7 +158,6 @@ VALUES (3, 'Maria Schreiner', 4, 'Schneller Reifenwechsel, sehr freundlich.',   
 
 INSERT INTO reviews (user_id, name, stars, text, created_at)
 VALUES (4, 'Stefan Bauer',    5, 'Transparent, pünktlich, top Preisleistung.',         CURRENT_TIMESTAMP);
-
 
 -- 8. OPENING HOURS
 INSERT INTO opening_hours (day_label, open_time, close_time, closed)

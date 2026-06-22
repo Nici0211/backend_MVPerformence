@@ -22,6 +22,7 @@ public interface ServiceMapper {
     ServiceEntity toEntity(ServiceEntityDTO serviceDTO);
 
     @Mapping(target = "icon", ignore = true)
+    @Mapping(target = "duration", source = "duration")  // explizit
     ServiceEntityDTO toDto(ServiceEntity service);
 
     List<ServiceEntityDTO> toDto(List<ServiceEntity> service);

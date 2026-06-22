@@ -52,7 +52,7 @@ public class ServiceEntityService {
 
     public ServiceEntityDTO updateService(Long id, ServiceEntityDTO dto) {
         ServiceEntity entity = serviceRepository.findById(id)
-                                            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Service nicht gefunden: " + id));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Service nicht gefunden: " + id));
 
         if (dto.getIcon() != null)
             entity.setIcon(Base64.getDecoder().decode(dto.getIcon()));
@@ -63,9 +63,14 @@ public class ServiceEntityService {
         if (dto.getSubtitle() != null)
             entity.setSubtitle(dto.getSubtitle());
 
+        if (dto.getPrice() != null)
+            entity.setPrice(dto.getPrice());
+
+        if (dto.getDuration() != null)
+            entity.setDuration(dto.getDuration());
+
         return encodeIcon(serviceRepository.save(entity));
     }
-
     @Transactional
     public void deleteService(Long id) {
         ServiceEntity service = serviceRepository.findById(id)

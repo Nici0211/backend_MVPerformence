@@ -34,6 +34,9 @@ public class Offer {
     @Column
     private Double price;
 
+    @Column
+    private Integer duration;
+
     @Column(nullable = false)
     @Builder.Default
     private Boolean active = true;
@@ -41,7 +44,6 @@ public class Offer {
     @Column(name = "created_at", nullable = false, updatable = false)
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
-
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "offer_services",

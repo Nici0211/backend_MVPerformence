@@ -38,6 +38,9 @@ public class ServiceEntity {
     @Column
     private Double price;
 
+    @Column
+    private Integer duration;
+
     @OneToMany(mappedBy = "serviceEntity", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
